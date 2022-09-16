@@ -4,6 +4,7 @@
 
 # ------------------------------------------------------------------------
 
+METHODS=
 METHODS+=" ANIm"
 # METHODS+=" ANIb"
 # METHODS+=" ANIblastall"
