@@ -1,0 +1,10 @@
+# http://widdowquinn.github.io/pyani/
+# https://bioconda.github.io/recipes/pyani/README.html
+---
+image: pvstodghill/pyani
+version: 0.2.12__2022-09-15
+commands:
+  - average_nucleotide_identity.py
+  - delta_filter_wrapper.py
+  - genbank_get_genomes_by_taxon.py
+
