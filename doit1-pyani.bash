@@ -3,6 +3,11 @@
 . $(dirname ${BASH_SOURCE[0]})/doit-preamble.bash
 
 # ------------------------------------------------------------------------
+
+rm -rf ${PYANI}
+mkdir -p ${PYANI}
+
+# ------------------------------------------------------------------------
 # Run pyani
 # ------------------------------------------------------------------------
 
@@ -14,8 +19,8 @@ for METHOD in ${METHODS} ; do
     average_nucleotide_identity.py \
 	  --method ${METHOD} \
 	  --verbose \
-	  --indir ${DATA}/inputs \
-	  --outdir ${DATA}/${METHOD} \
+	  --indir ${INPUTS} \
+	  --outdir ${PYANI}/${METHOD} \
 	  --graphics \
 	  --workers ${THREADS}
 done

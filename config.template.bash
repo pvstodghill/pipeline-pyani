@@ -4,6 +4,10 @@
 
 # ------------------------------------------------------------------------
 
+COLLECTION=../collection/data
+
+# ------------------------------------------------------------------------
+
 METHODS=
 METHODS+=" ANIm"
 # METHODS+=" ANIb"
@@ -12,12 +16,12 @@ METHODS+=" ANIm"
 
 # ------------------------------------------------------------------------
 
-# Uncomment to get packages from HOWTO
-PACKAGES_FROM=howto
+# # Uncomment to get packages from HOWTO
+# PACKAGES_FROM=howto
 
-# uncomment to use conda
-# PACKAGES_FROM=conda
-# CONDA_ENV=pipeline-pyani
+# Uncomment to use conda
+PACKAGES_FROM=conda
+CONDA_ENV=pipeline-pyani
 
 #THREADS=$(nproc --all)
 

@@ -3,6 +3,11 @@
 # In order to help test portability, I eliminate all of my
 # personalizations from the PATH, etc.
 if [ "$PVSE" ] ; then
+    HOWTO_CONDA_CMD="${HOWTO_CONDA_CMD:-$(type -p mamba)}"
+    HOWTO_CONDA_CMD="${HOWTO_CONDA_CMD:-$(type -p conda)}"
+    if [ "$HOWTO_CONDA_CMD" ] ; then
+	export HOWTO_CONDA_CMD
+    fi
     export PATH=/usr/local/bin:/usr/bin:/bin
     export PERL5LIB=
     export PERL_LOCAL_LIB_ROOT=
@@ -14,7 +19,9 @@ fi
 # ------------------------------------------------------------------------
 
 # yuck. ugly.
+
 if [ -e /programs/docker/bin/docker1 ] ; then
+    export HOWTO_DOCKER_CMD=/programs/docker/bin/docker1
     THREADS=32
 else
     THREADS=$(nproc --all)
@@ -24,6 +31,10 @@ if [ -e /programs/parallel/bin/parallel ] ; then
     PARALLEL_CMD=/programs/parallel/bin/parallel
 fi
 
+# ------------------------------------------------------------------------
+
+# These vars are used in parameters to stubs/*, so they cannot be
+# `realpath`'ed.
 PIPELINE=$(dirname ${BASH_SOURCE[0]})
 # v-- can be specified externally
 DATA=${DATA:-data}
@@ -47,11 +58,10 @@ case X"$PACKAGES_FROM"X in
     XcondaX)
 	CONDA_PREFIX=$(dirname $(dirname $CONDA_EXE))
 	. "${CONDA_PREFIX}/etc/profile.d/conda.sh"
-	conda activate $CONDA_ENV || exit
-
+	conda activate $CONDA_ENV || exit 1
 	;;
     XX|XhowtoX|XstubsX)
-	export PATH=$(realpath $(dirname ${BASH_SOURCE[0]}))/stubs:"$PATH"
+	export PATH=$(realpath ${PIPELINE})/stubs:"$PATH"
 	;;
     XnativeX)
 	: nothing
@@ -92,3 +102,6 @@ set -o pipefail
 export LC_ALL=C
 
 # ------------------------------------------------------------------------
+
+INPUTS=${DATA}/0_inputs
+PYANI=${DATA}/1_pyani
