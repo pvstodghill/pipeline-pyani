@@ -15,7 +15,18 @@ echo 1>&2 '# Make clades'
 
 for METHOD in ${METHODS} ; do
 
-    MATRIX=${PYANI}/${METHOD}/${METHOD}_percentage_identity.tab
+    echo 1>&2 "## ${METHOD}"
+    for f in ${PYANI}/${METHOD}/${METHOD}_percentage_identity.tab \
+		     ${PYANI}/${METHOD}/${METHOD}_correlations.tab ; do
+	if [ -e $f ] ; then
+	    MATRIX=$f
+	    break
+	fi
+    done
+    if [ -z "$MATRIX" ] ; then
+	echo 1>&2 "Did not matrix file"
+	exit 1
+    fi
 
     ${PIPELINE}/scripts/make-clades.pl \
 	       -M ${MATRIX} \
