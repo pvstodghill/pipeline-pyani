@@ -105,3 +105,4 @@ export LC_ALL=C
 
 INPUTS=${DATA}/0_inputs
 PYANI=${DATA}/1_pyani
+CLADES=${DATA}/2_clades

@@ -16,6 +16,11 @@ METHODS+=" ANIm"
 
 # ------------------------------------------------------------------------
 
+SPECIES_CUTOFF=0.95
+GENUS_CUTOFF=0.70
+
+# ------------------------------------------------------------------------
+
 # # Uncomment to get packages from HOWTO
 # PACKAGES_FROM=howto
 
