@@ -28,17 +28,25 @@ for METHOD in ${METHODS} ; do
 	exit 1
     fi
 
+    echo 1>&2 '### Make species list'
     ${PIPELINE}/scripts/make-clades.pl \
 	       -M ${MATRIX} \
 	       -c ${SPECIES_CUTOFF} \
-	       -d ${CLADES}/${METHOD}_species.dot \
 	       > ${CLADES}/${METHOD}_species.txt
 
+    echo 1>&2 '### Make genus list'
     ${PIPELINE}/scripts/make-clades.pl \
 	       -M ${MATRIX} \
 	       -c ${GENUS_CUTOFF} \
-	       -d ${CLADES}/${METHOD}_genus.dot \
 	       > ${CLADES}/${METHOD}_genus.txt
+
+    echo 1>&2 '### Make .dot file'
+    ${PIPELINE}/scripts/make-clades.pl \
+	       -M ${MATRIX} \
+	       -c ${GENUS_CUTOFF} \
+	       -d ${CLADES}/${METHOD}.dot \
+	       > /dev/null
+
 done
 
 # ------------------------------------------------------------------------
