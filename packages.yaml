@@ -1,8 +1,6 @@
-# http://widdowquinn.github.io/pyani/
-# https://bioconda.github.io/recipes/pyani/README.html
 ---
-image: pvstodghill/pyani
-version: 0.2.12__2022-09-15
+image: pvstodghill/pipeline-pyani
+version: 2023-03-30
 commands:
   - average_nucleotide_identity.py
   - delta_filter_wrapper.py
