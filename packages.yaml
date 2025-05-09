@@ -1,8 +1,12 @@
 ---
-image: pvstodghill/pipeline-pyani
-version: 2023-03-30
+environment: stubs__pyani
+packages: pyani
+channels:
+  - conda-forge
+  - bioconda
 commands:
   - average_nucleotide_identity.py
   - delta_filter_wrapper.py
   - genbank_get_genomes_by_taxon.py
+  - pyani
 
